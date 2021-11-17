@@ -41,7 +41,7 @@ export class View{
     deleteTodoHandler(handler){       
         this.todoList.addEventListener("click", (event)=>{
             event.preventDefault;
-            const {target} = event;
+            const target = event.target;
             if(target.matches('li')){
                 handler(target.id);
                 this.todoList.removeChild(target);
