@@ -3,3 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+li span{
+    pointer-events: none;
+}
+
+li button{
+    pointer-events: none;
+}
