@@ -4,6 +4,9 @@ export class Controller{
         this.view = view;
         this.view.addTodoHandler(this.addTodo.bind(this));
         this.view.deleteTodoHandler(this.deleteTodo.bind(this));
+
+        
+        this.view.render(this.model.getItem());
     }
 
     addTodo(todo){
