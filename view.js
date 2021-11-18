@@ -6,25 +6,35 @@ export class View{
     }
 
     render(todos){
-        console.log(this.inputAddTodo.value);
         this.clearList();
         todos.forEach((item) => {
-            this.todoList.innerHTML += this.getTemplate(item);
+            this.todoList.innerHTML += this.getTodoTemplate(item);
         })        
         this.inputAddTodo.value = "";
 
+    }
+
+    renderPlayer(player){
+        const lvl = document.getElementById("lvl");
+        const exp = document.getElementById("exp");
+        const requiredExp = document.getElementById("requiredExp");
+
+        lvl.innerText = player.lvl;
+        exp.innerText = player.exp;
+        requiredExp.innerText = player.requiredExp;
     }
 
     clearList(){
         this.todoList.innerHTML = "";
     }
 
-    getTemplate(item){
+    getTodoTemplate(item){
         
         return `
         <li id=${item.id}>
             <span class="todoText">${item.todo}</span>
             <button class="btnDeleteTodo"> x </button>
+            <button class="btnCompleteTodo"> v </button>
         </li>
         `;
     }
@@ -42,9 +52,21 @@ export class View{
         this.todoList.addEventListener("click", (event)=>{
             event.preventDefault;
             const target = event.target;
-            if(target.matches('li')){
-                handler(target.id);
-                this.todoList.removeChild(target);
+            if(target.classList[0] === 'btnDeleteTodo'){
+                handler(target.parentNode.id);
+                this.todoList.removeChild(target.parentNode);
+            }
+        });
+    }
+
+    completeTodoHandler(handler, player){       
+        this.todoList.addEventListener("click", (event)=>{
+            event.preventDefault;
+            const target = event.target;
+            if(target.classList[0] === 'btnCompleteTodo'){
+                handler(target.parentNode.id);
+                this.todoList.removeChild(target.parentNode);
+                this.renderPlayer(player);
             }
         });
     }

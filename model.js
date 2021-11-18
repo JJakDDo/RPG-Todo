@@ -1,5 +1,7 @@
+import { Player } from "./player.js";
+
 export class Model{
-    constructor(){
+    constructor(player){
         const todos = JSON.parse(localStorage.getItem("todos"));
         this.items = [];
         this.count = 1;
@@ -9,16 +11,19 @@ export class Model{
                 this.count = elem.id + 1;
             });
         }
+        this.player = new Player();
     }
 
     addItem(item, callback){
         this.items.push({
             todo: item,
-            id: this.count++
+            id: this.count,
+            exp: this.count % 10 == 0 ? 1000 : Math.round(Math.random() * 2 + 1) * 100
         });
         if(callback){
             callback();
         }
+        this.count++;
         this.storeItem();
     }
 
@@ -33,5 +38,10 @@ export class Model{
 
     storeItem(){
         localStorage.setItem("todos", JSON.stringify(this.items));
+    }
+
+    completeItem(id){
+        this.player.addExp(this.items.filter((elem) => elem.id == id)[0].exp);
+        this.deleteItem(id);        
     }
 }
