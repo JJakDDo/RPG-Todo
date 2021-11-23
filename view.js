@@ -45,6 +45,14 @@ export class View{
             if(this.inputAddTodo.value){
                 handler(this.inputAddTodo.value);
             }
+        });       
+        this.inputAddTodo.addEventListener("keyup", (event)=>{
+            if(event.keyCode == 13){
+                event.preventDefault;
+                if(this.inputAddTodo.value){
+                    handler(this.inputAddTodo.value);
+                }
+            }
         });
     }
 
