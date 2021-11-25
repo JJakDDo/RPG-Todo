@@ -1,8 +1,16 @@
 export class View{
-    constructor(){
+    constructor(player){
         this.btnAddTodo = document.getElementById("btnAddTodo");
         this.inputAddTodo = document.getElementById("inputAddTodo");
         this.todoList = document.getElementById("todoList");
+
+        this.canvas = document.getElementById("canvas");
+        this.ctx = this.canvas.getContext("2d");
+        this.stageWidth = document.body.clientWidth;
+        this.stageHeight = document.body.clientHeight;
+        this.canvas.width = this.stageWidth * 2;
+        this.canvas.height = this.stageHeight * 2;
+        this.ctx.scale(2,2);
     }
 
     render(todos){
@@ -11,7 +19,6 @@ export class View{
             this.todoList.innerHTML += this.getTodoTemplate(item);
         })        
         this.inputAddTodo.value = "";
-
     }
 
     renderPlayer(player){
@@ -77,5 +84,16 @@ export class View{
                 this.renderPlayer(player);
             }
         });
+    }    
+
+    drawPlayer(player){        
+        this.player = player;
+        //requestAnimationFrame(this.animate.bind(this));
+        this.player.draw(this.ctx, 1);
     }
+
+    /*animate(t){
+        requestAnimationFrame(this.animate.bind(this));
+        this.player.draw(this.ctx, t);
+    }*/
 }
