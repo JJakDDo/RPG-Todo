@@ -10,6 +10,8 @@ body{
 
 #canvas{
     position: absolute;
+    bottom: 0;
+    left: 0;
 }
 #main{
     position: relative;
@@ -21,6 +23,7 @@ body{
 }
 
 #playerInfo{
+    position: relative;
     width: 100%;
     height: 100px;
     margin-bottom: 5px;

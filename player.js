@@ -11,6 +11,10 @@ export class Player{
             this.requiredExp = 500;
         }
 
+        
+        this.canvas  = document.getElementById("canavas");
+        this.context = canvas.getContext('2d');
+
         this.img = new Image();
         this.img.src = 'src/Pink_Monster_Idle_4.png';
         this.img.onload = () => {
@@ -23,9 +27,9 @@ export class Player{
         this.curFrame = 0;
 
         this.imgWidth = 32;
-        this.imgheight = 32;
+        this.imgHeight = 32;
 
-        this.fps = 4;
+        this.fps = 8;
         this.fpsTime = 1000 / this.fps;
     }
 
@@ -49,25 +53,24 @@ export class Player{
 
     loaded(){
         this.isLoaded = true;
-        console.log(this.img.src);
     }
 
     draw(ctx, t){
-        /*this.curFrame += 1;
-        if(this.curFrame == this.totalFrame){
-            this.curFrame = 0;
+        if(!this.time){
+            this.time = t;
+        }
+
+        const now = t - this.time;
+        if(now > this.fpsTime){
+            this.time = t;
+            this.curFrame += 1;
+            if(this.curFrame == this.totalFrame){
+                this.curFrame = 0;
+            }
         }
         if(this.isLoaded){
             this.animate(ctx);
-        }*/
-        console.log(ctx);
-        ctx.drawImage(
-            this.img,
-            0,
-            0,
-            128,
-            32,
-        );
+        }
     }
 
     animate(ctx){
@@ -81,13 +84,6 @@ export class Player{
             0,
             this.imgWidth,
             this.imgHeight
-        );
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(
-            32,
-            32,
-            this.imgWidth,
-            this.imgheight
         );
     }
 }

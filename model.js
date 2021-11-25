@@ -11,7 +11,7 @@ export class Model{
                 this.count = elem.id + 1;
             });
         }
-        this.player = new Player();
+        this.player = player;
     }
 
     addItem(item, callback){

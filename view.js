@@ -5,12 +5,14 @@ export class View{
         this.todoList = document.getElementById("todoList");
 
         this.canvas = document.getElementById("canvas");
-        this.ctx = this.canvas.getContext("2d");
-        this.stageWidth = document.body.clientWidth;
-        this.stageHeight = document.body.clientHeight;
-        this.canvas.width = this.stageWidth * 2;
-        this.canvas.height = this.stageHeight * 2;
+        this.ctx = canvas.getContext('2d');
+        this.canvas.width = 64;
+        this.canvas.height = 64;
         this.ctx.scale(2,2);
+
+        this.img = new Image();
+        this.img.src = 'src/Pink_Monster_Idle_4.png';
+        this.player = player;
     }
 
     render(todos){
@@ -86,14 +88,13 @@ export class View{
         });
     }    
 
-    drawPlayer(player){        
-        this.player = player;
-        //requestAnimationFrame(this.animate.bind(this));
-        this.player.draw(this.ctx, 1);
+    drawPlayer(){        
+        requestAnimationFrame(this.animate.bind(this));
     }
 
-    /*animate(t){
+    animate(t){
         requestAnimationFrame(this.animate.bind(this));
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.player.draw(this.ctx, t);
-    }*/
+    }
 }
