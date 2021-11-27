@@ -8,7 +8,7 @@ export class Controller{
         
         this.view.render(this.model.getItem());
         this.view.renderPlayer(this.model.player);
-        this.view.drawPlayer();
+        this.view.draw();
     }
 
     addTodo(todo){

@@ -4,14 +4,11 @@ export class View{
         this.inputAddTodo = document.getElementById("inputAddTodo");
         this.todoList = document.getElementById("todoList");
 
-        this.canvas = document.getElementById("canvas");
-        this.ctx = canvas.getContext('2d');
+        this.canvas = document.getElementById("playerCanvas");
+        this.ctx = this.canvas.getContext('2d');
         this.canvas.width = 64;
         this.canvas.height = 64;
-        this.ctx.scale(2,2);
 
-        this.img = new Image();
-        this.img.src = 'src/Pink_Monster_Idle_4.png';
         this.player = player;
     }
 
@@ -44,6 +41,7 @@ export class View{
             <span class="todoText">${item.todo}</span>
             <button class="btnDeleteTodo"> x </button>
             <button class="btnCompleteTodo"> v </button>
+            <img class="monsterImg" src="/src/${item.monster}.png"></img>
         </li>
         `;
     }
@@ -88,7 +86,7 @@ export class View{
         });
     }    
 
-    drawPlayer(){        
+    draw(){        
         requestAnimationFrame(this.animate.bind(this));
     }
 

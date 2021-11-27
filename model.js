@@ -5,6 +5,7 @@ export class Model{
         const todos = JSON.parse(localStorage.getItem("todos"));
         this.items = [];
         this.count = 1;
+        this.totalMonster = 2;
         if(todos){
             todos.forEach((elem) => {
                 this.items.push(elem);
@@ -18,6 +19,7 @@ export class Model{
         this.items.push({
             todo: item,
             id: this.count,
+            monster: Math.floor(Math.random() * this.totalMonster),
             exp: this.count % 10 == 0 ? 1000 : Math.round(Math.random() * 2 + 1) * 100
         });
         if(callback){

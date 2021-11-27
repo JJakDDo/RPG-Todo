@@ -11,9 +11,6 @@ export class Player{
             this.requiredExp = 500;
         }
 
-        
-        this.canvas  = document.getElementById("canavas");
-        this.context = canvas.getContext('2d');
 
         this.img = new Image();
         this.img.src = 'src/Pink_Monster_Idle_4.png';
@@ -82,8 +79,8 @@ export class Player{
             this.imgHeight,
             0,
             0,
-            this.imgWidth,
-            this.imgHeight
+            this.imgWidth * 2,
+            this.imgHeight * 2
         );
     }
 }
