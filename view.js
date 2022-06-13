@@ -6,7 +6,7 @@ export class View {
 
     this.canvas = document.getElementById("playerCanvas");
     this.ctx = this.canvas.getContext("2d");
-    this.canvas.width = 64;
+    this.canvas.width = 48;
     this.canvas.height = 96;
 
     this.player = player;
@@ -22,12 +22,13 @@ export class View {
 
   renderPlayer(player) {
     const lvl = document.getElementById("lvl");
-    const exp = document.getElementById("exp");
-    const requiredExp = document.getElementById("requiredExp");
+    const bar = document.getElementById("bar");
+    const barTemp = document.getElementById("barTemp");
 
-    lvl.innerText = player.lvl;
-    exp.innerText = player.exp;
-    requiredExp.innerText = player.requiredExp;
+    lvl.innerText = `레벨 ${player.lvl} (${player.exp}/${player.requiredExp})`;
+    bar.style.width = `${
+      (player.exp / player.requiredExp) * barTemp.clientWidth
+    }px`;
   }
 
   clearList() {
