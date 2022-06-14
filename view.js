@@ -39,9 +39,9 @@ export class View {
     return `
         <li id=${item.id}>
             <span class="todoText">${item.todo}</span>
-            <button class="btnDeleteTodo"> x </button>
-            <button class="btnCompleteTodo"> v </button>
             <img class="monsterImg" src="/src/${item.monster}.png"></img>
+            <button class="btnCompleteTodo">완료</button>
+            <button class="btnDeleteTodo">포기</button>
         </li>
         `;
   }
