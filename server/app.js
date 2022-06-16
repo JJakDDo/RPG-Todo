@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const connectDB = require("./db/connect");
 const authRouter = require("./routes/auth");
+const authenticateUser = require("./middlewares/authentication");
 
 app.use(express.json());
 
