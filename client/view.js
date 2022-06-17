@@ -1,5 +1,7 @@
 export class View {
   constructor(player) {
+    this.initTodoView();
+
     this.btnAddTodo = document.getElementById("btnAddTodo");
     this.inputAddTodo = document.getElementById("inputAddTodo");
     this.todoList = document.getElementById("todoList");
@@ -10,6 +12,27 @@ export class View {
     this.canvas.height = 96;
 
     this.player = player;
+  }
+
+  initTodoView() {
+    this.main = document.getElementById("main");
+    this.main.innerHTML = `<div id="playerInfo">
+        <canvas id="playerCanvas"></canvas>
+        <div id="levelInfo">
+          <span id="lvl">lvl</span>
+          <div id="expInfo">
+            <div id="bar"></div>
+            <div id="barTemp"></div>
+          </div>
+        </div>
+      </div>
+      <div id="inputTodo">
+        <input id="inputAddTodo" type="text" />
+        <button id="btnAddTodo">추가</button>
+      </div>
+      <div id="list">
+        <ul id="todoList"></ul>
+      </div>`;
   }
 
   render(todos) {
@@ -39,7 +62,7 @@ export class View {
     return `
         <li id=${item.id}>
             <span class="todoText">${item.todo}</span>
-            <img class="monsterImg" src="/src/${item.monster}.png"></img>
+            <img class="monsterImg" src="src/${item.monster}.png"></img>
             <button class="btnCompleteTodo">완료</button>
             <button class="btnDeleteTodo">포기</button>
         </li>
