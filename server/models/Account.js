@@ -14,6 +14,14 @@ const AccountSchema = new mongoose.Schema({
     required: [true, "Please provide Password"],
     minLength: 6,
   },
+  level: {
+    type: Number,
+    default: 1,
+  },
+  experience: {
+    type: Number,
+    default: 0,
+  },
 });
 
 AccountSchema.pre("save", async function () {
