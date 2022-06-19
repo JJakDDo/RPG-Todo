@@ -22,6 +22,10 @@ const AccountSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  requiredExperience: {
+    type: Number,
+    default: 100,
+  },
 });
 
 AccountSchema.pre("save", async function () {

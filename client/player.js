@@ -1,15 +1,19 @@
 export class Player {
-  constructor() {
-    const player = JSON.parse(localStorage.getItem("player"));
-    if (player) {
-      this.lvl = +player.lvl;
-      this.exp = +player.exp;
-      this.requiredExp = +player.requiredExp;
-    } else {
-      this.lvl = 1;
-      this.exp = 0;
-      this.requiredExp = 500;
-    }
+  constructor(user) {
+    // const player = JSON.parse(localStorage.getItem("player"));
+    // if (player) {
+    //   this.lvl = +player.lvl;
+    //   this.exp = +player.exp;
+    //   this.requiredExp = +player.requiredExp;
+    // } else {
+    //   this.lvl = 1;
+    //   this.exp = 0;
+    //   this.requiredExp = 500;
+    // }
+
+    this.lvl = user.level;
+    this.exp = user.exp;
+    this.requiredExp = 500;
 
     this.img = new Image();
     this.img.src = "src/4.png";

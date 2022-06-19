@@ -43,14 +43,14 @@ export class View {
     this.inputAddTodo.value = "";
   }
 
-  renderPlayer(player) {
+  renderPlayer(user) {
     const lvl = document.getElementById("lvl");
     const bar = document.getElementById("bar");
     const barTemp = document.getElementById("barTemp");
 
-    lvl.innerText = `레벨 ${player.lvl} (${player.exp}/${player.requiredExp})`;
+    lvl.innerText = `레벨 ${user.level} (${user.exp}/${user.requiredExp})`;
     bar.style.width = `${
-      (player.exp / player.requiredExp) * barTemp.clientWidth
+      (user.exp / user.requiredExp) * barTemp.clientWidth
     }px`;
   }
 

@@ -30,7 +30,7 @@ export class LoginModel {
       })
       .then((data) => {
         if (callback) {
-          callback();
+          callback(data.user);
         }
       });
   }

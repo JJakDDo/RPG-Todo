@@ -24,8 +24,8 @@ export class Controller {
   }
 
   login(userInfo) {
-    this.LoginModel.login(userInfo, () => {
-      this.player = new Player();
+    this.LoginModel.login(userInfo, (user) => {
+      this.player = new Player(user);
       this.model = new Model(this.player);
       this.view = new View(this.player);
       this.view.addTodoHandler(this.addTodo.bind(this));
@@ -35,7 +35,7 @@ export class Controller {
         this.model.player
       );
       this.view.render(this.model.getItem());
-      this.view.renderPlayer(this.model.player);
+      this.view.renderPlayer(user);
       this.view.draw();
     });
   }
