@@ -3,6 +3,7 @@ const { StatusCodes } = require("http-status-codes");
 
 const addTodo = async (req, res) => {
   const name = req.user.name;
+  console.log(req.body);
   const addedTodo = await Todo.create({ name, todo: req.body.todo });
   res.status(StatusCodes.CREATED).json({ msg: "success", todo: addedTodo });
 };

@@ -29,6 +29,7 @@ export class LoginModel {
         }
       })
       .then((data) => {
+        localStorage.setItem("token", JSON.stringify(data.token));
         if (callback) {
           callback(data.user);
         }

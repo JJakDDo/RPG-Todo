@@ -26,21 +26,16 @@ export class View {
           </div>
         </div>
       </div>
-      <div id="inputTodo">
-        <input id="inputAddTodo" type="text" />
-        <button id="btnAddTodo">추가</button>
-      </div>
       <div id="list">
-        <ul id="todoList"></ul>
       </div>`;
   }
 
   render(todos) {
-    this.clearList();
-    todos.forEach((item) => {
-      this.todoList.innerHTML += this.getTodoTemplate(item);
-    });
-    this.inputAddTodo.value = "";
+    // this.clearList();
+    // todos.forEach((item) => {
+    //   this.todoList.innerHTML += this.getTodoTemplate(item);
+    // });
+    //this.inputAddTodo.value = "";
   }
 
   renderPlayer(user) {
@@ -54,9 +49,9 @@ export class View {
     }px`;
   }
 
-  clearList() {
-    this.todoList.innerHTML = "";
-  }
+  // clearList() {
+  //   this.todoList.innerHTML = "";
+  // }
 
   getTodoTemplate(item) {
     return `
@@ -67,46 +62,6 @@ export class View {
             <button class="btnDeleteTodo">포기</button>
         </li>
         `;
-  }
-
-  addTodoHandler(handler) {
-    this.btnAddTodo.addEventListener("click", (event) => {
-      event.preventDefault;
-      if (this.inputAddTodo.value) {
-        handler(this.inputAddTodo.value);
-      }
-    });
-    this.inputAddTodo.addEventListener("keyup", (event) => {
-      if (event.keyCode == 13) {
-        event.preventDefault;
-        if (this.inputAddTodo.value) {
-          handler(this.inputAddTodo.value);
-        }
-      }
-    });
-  }
-
-  deleteTodoHandler(handler) {
-    this.todoList.addEventListener("click", (event) => {
-      event.preventDefault;
-      const target = event.target;
-      if (target.classList[0] === "btnDeleteTodo") {
-        handler(target.parentNode.id);
-        this.todoList.removeChild(target.parentNode);
-      }
-    });
-  }
-
-  completeTodoHandler(handler, player) {
-    this.todoList.addEventListener("click", (event) => {
-      event.preventDefault;
-      const target = event.target;
-      if (target.classList[0] === "btnCompleteTodo") {
-        handler(target.parentNode.id);
-        this.todoList.removeChild(target.parentNode);
-        this.renderPlayer(player);
-      }
-    });
   }
 
   draw() {
