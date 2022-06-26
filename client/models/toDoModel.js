@@ -2,19 +2,6 @@ export class ToDoModel {
   constructor() {}
 
   login(userInfo, callback) {
-    // this.items.push({
-    //   todo: item,
-    //   id: this.count,
-    //   monster: Math.floor(Math.random() * this.totalMonster),
-    //   exp:
-    //     this.count % 10 == 0 ? 1000 : Math.round(Math.random() * 2 + 1) * 100,
-    // });
-    // if (callback) {
-    //   callback();
-    // }
-    // this.count++;
-    // this.storeItem();
-
     // call API to login
     fetch("http://127.0.0.1:4000/api/v1/auth/login", {
       method: "POST",
@@ -41,6 +28,7 @@ export class ToDoModel {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
     })
       .then((response) => {
@@ -98,12 +86,23 @@ export class ToDoModel {
       });
   }
 
-  storeItem() {
-    localStorage.setItem("todos", JSON.stringify(this.items));
-  }
-
   completeItem(id) {
-    this.player.addExp(this.items.filter((elem) => elem.id == id)[0].exp);
-    this.deleteItem(id);
+    const token = JSON.parse(localStorage.getItem("token"));
+    fetch(`http://127.0.0.1:4000/api/v1/todo/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ isComplete: true }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      });
   }
 }

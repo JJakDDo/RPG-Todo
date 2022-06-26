@@ -74,14 +74,13 @@ export class ToDoView {
     });
   }
 
-  completeTodoHandler(handler, player) {
+  completeTodoHandler(handler) {
     this.todoList.addEventListener("click", (event) => {
       event.preventDefault;
       const target = event.target;
       if (target.classList[0] === "btnCompleteTodo") {
         handler(target.parentNode.id);
         this.todoList.removeChild(target.parentNode);
-        this.renderPlayer(player);
       }
     });
   }

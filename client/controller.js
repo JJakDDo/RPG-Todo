@@ -39,10 +39,7 @@ export class Controller {
       this.todoModel.getItem((todos) => this.todoView.render(todos));
       this.todoView.addTodoHandler(this.addTodo.bind(this));
       this.todoView.deleteTodoHandler(this.deleteTodo.bind(this));
-      this.todoView.completeTodoHandler(
-        this.completeTodo.bind(this),
-        this.model.player
-      );
+      this.todoView.completeTodoHandler(this.completeTodo.bind(this));
     });
   }
 
@@ -57,6 +54,6 @@ export class Controller {
   }
 
   completeTodo(id) {
-    this.model.completeItem(id);
+    this.todoModel.completeItem(id);
   }
 }

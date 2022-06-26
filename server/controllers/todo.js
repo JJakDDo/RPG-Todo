@@ -44,7 +44,8 @@ const updateTodo = async (req, res) => {
 
 const getTodos = async (req, res) => {
   const name = req.user.name;
-  const filter = req.body.filter;
+  //const filter = req.body.filter;
+  const filter = { isComplete: false };
   const todos = await Todo.find({ name, ...filter });
   res.status(200).json({ data: todos });
 };
