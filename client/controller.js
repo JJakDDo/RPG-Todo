@@ -8,21 +8,10 @@ import { ToDoModel } from "./models/toDoModel.js";
 
 export class Controller {
   constructor() {
-    // this.model = model;
-    // this.view = view;
-    // this.view.addTodoHandler(this.addTodo.bind(this));
-    // this.view.deleteTodoHandler(this.deleteTodo.bind(this));
-    // this.view.completeTodoHandler(
-    //   this.completeTodo.bind(this),
-    //   this.model.player
-    // );
     this.loginView = new LoginView();
     this.LoginModel = new LoginModel();
     this.loginView.render();
     this.loginView.loginHandler(this.login.bind(this));
-    // this.view.render(this.model.getItem());
-    // this.view.renderPlayer(this.model.player);
-    // this.view.draw();
   }
 
   login(userInfo) {
@@ -43,16 +32,27 @@ export class Controller {
     });
   }
 
+  /*
+    투두 목록에 투두 추가하기
+  */
   addTodo(todo) {
     this.todoModel.addItem(todo, (added) =>
       this.todoView.renderAddedTodo(added)
     );
   }
 
+  /*
+    투두 목록에서 특정 투두 삭제하기
+    id mongoDB Object ID
+  */
   deleteTodo(id) {
     this.todoModel.deleteItem(id);
   }
 
+  /*
+    특정 투두 완료 상태로 변경하기
+    id mongoDB Object ID
+  */
   completeTodo(id) {
     this.todoModel.completeItem(id);
   }

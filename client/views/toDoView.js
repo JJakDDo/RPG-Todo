@@ -6,15 +6,21 @@ export class ToDoView {
     this.todoList = document.getElementById("todoList");
   }
 
+  /*
+    투두 목록들을 브라우저에 출력하기
+    todos 투두 배열
+  */
   render(todos) {
-    console.log(todos);
+    //먼저 DOM에 존재하는 리스트를 삭제한다.
     this.clearList();
+    //배열을 돌면서 각 투두를 DOM에 추가한다.
     todos.forEach((item) => {
       this.todoList.innerHTML += this.getTodoTemplate(item);
     });
     this.inputAddTodo.value = "";
   }
 
+  // 새롭게 추가되는 투두만 목록의 마지막에 출력한다.
   renderAddedTodo(todo) {
     this.todoList.innerHTML += this.getTodoTemplate(todo);
     this.inputAddTodo.value = "";
@@ -46,6 +52,7 @@ export class ToDoView {
     this.todoList.innerHTML = "";
   }
 
+  // 투두 추가 버튼의 클릭 이벤트 핸들러를 만들어준다.
   addTodoHandler(handler) {
     this.btnAddTodo.addEventListener("click", (event) => {
       event.preventDefault;
@@ -53,16 +60,9 @@ export class ToDoView {
         handler(this.inputAddTodo.value);
       }
     });
-    // this.inputAddTodo.addEventListener("keyup", (event) => {
-    //   if (event.keyCode == 13) {
-    //     event.preventDefault;
-    //     if (this.inputAddTodo.value) {
-    //       handler(this.inputAddTodo.value);
-    //     }
-    //   }
-    // });
   }
 
+  // 투두 삭제 버튼의 클릭 이벤트 핸들러를 만들어준다.
   deleteTodoHandler(handler) {
     this.todoList.addEventListener("click", (event) => {
       event.preventDefault;
@@ -74,6 +74,7 @@ export class ToDoView {
     });
   }
 
+  // 투두 완료 버튼의 클릭 이벤트 핸들러를 만들어준다.
   completeTodoHandler(handler) {
     this.todoList.addEventListener("click", (event) => {
       event.preventDefault;

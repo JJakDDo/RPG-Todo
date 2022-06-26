@@ -1,6 +1,7 @@
 export class ToDoModel {
   constructor() {}
 
+  // 로그인 API 호출 후 성공 시 투두 페이지로 이동한다.
   login(userInfo, callback) {
     // call API to login
     fetch("http://127.0.0.1:4000/api/v1/auth/login", {
@@ -22,6 +23,7 @@ export class ToDoModel {
       });
   }
 
+  // 현재 진행중인 투두 목록들을 가지고 온다.
   getItem(callback) {
     const token = JSON.parse(localStorage.getItem("token"));
     fetch("http://127.0.0.1:4000/api/v1/todo", {
@@ -43,6 +45,7 @@ export class ToDoModel {
       });
   }
 
+  // 투두를 추가한다.
   addItem(item, callback) {
     const token = JSON.parse(localStorage.getItem("token"));
     console.log(item);
@@ -67,6 +70,7 @@ export class ToDoModel {
     // return [];
   }
 
+  // 투두를 삭제한다.
   deleteItem(id) {
     const token = JSON.parse(localStorage.getItem("token"));
     fetch(`http://127.0.0.1:4000/api/v1/todo/${id}`, {
@@ -86,6 +90,7 @@ export class ToDoModel {
       });
   }
 
+  // 투두를 완료한다.
   completeItem(id) {
     const token = JSON.parse(localStorage.getItem("token"));
     fetch(`http://127.0.0.1:4000/api/v1/todo/${id}`, {

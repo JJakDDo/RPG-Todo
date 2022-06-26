@@ -3,8 +3,8 @@ export class LoginView {
     this.main = document.getElementById("main");
   }
 
+  // 로그인 페이지를 렌더링한다.
   render() {
-    console.log("here");
     this.main.innerHTML = this.getLoginTemplate();
   }
 
@@ -19,6 +19,7 @@ export class LoginView {
         `;
   }
 
+  //로그인 버튼의 클릭 이벤트 핸들러를 추가해준다.
   loginHandler(handler) {
     const inputName = document.getElementById("name");
     const inputPassword = document.getElementById("password");
