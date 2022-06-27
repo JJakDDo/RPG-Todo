@@ -1,28 +1,6 @@
 export class ToDoModel {
   constructor() {}
 
-  // 로그인 API 호출 후 성공 시 투두 페이지로 이동한다.
-  login(userInfo, callback) {
-    // call API to login
-    fetch("http://127.0.0.1:4000/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        if (callback) {
-          callback(data.user);
-        }
-      });
-  }
-
   // 현재 진행중인 투두 목록들을 가지고 온다.
   getItem(callback) {
     const token = JSON.parse(localStorage.getItem("token"));
@@ -94,12 +72,11 @@ export class ToDoModel {
   completeItem(id) {
     const token = JSON.parse(localStorage.getItem("token"));
     fetch(`http://127.0.0.1:4000/api/v1/todo/${id}`, {
-      method: "PATCH",
+      method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ isComplete: true }),
     })
       .then((response) => {
         if (response.status === 200) {

@@ -10,6 +10,9 @@ const TodoSchema = new mongoose.Schema({
   todo: {
     type: String,
   },
+  exp: {
+    type: Number,
+  },
   isComplete: {
     type: Boolean,
     default: false,
