@@ -48,7 +48,6 @@ body {
 
 #inputTodo {
   position: relative;
-  display: flex;
   width: 100%;
   height: 30px;
   padding: 2px;
@@ -78,6 +77,16 @@ body {
   font-size: 1.5rem;
   right: 30px;
   top: 10px;
+}
+
+#btnShowAddToDo {
+  border: none;
+  background: #0d1117;
+  font-size: 1.5rem;
+}
+
+#btnShowAddToDo:hover {
+  background: #c6cdd542;
 }
 
 #list {
@@ -150,6 +159,10 @@ body {
 .monsterImg {
   width: 32px;
   height: 32px;
+}
+
+.hide {
+  display: none;
 }
 
 @media (prefers-color-scheme: dark) {

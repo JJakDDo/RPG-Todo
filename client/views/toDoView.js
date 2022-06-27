@@ -4,6 +4,27 @@ export class ToDoView {
     this.btnAddTodo = document.getElementById("btnAddTodo");
     this.inputAddTodo = document.getElementById("inputAddTodo");
     this.todoList = document.getElementById("todoList");
+    this.btnShowAddToDo = document.getElementById("btnShowAddToDo");
+    this.inputToDo = document.getElementById("inputTodo");
+    console.log(this.inputToDo);
+    this.inputToDo.classList.add("hide");
+    this.showAddToDoInput = document.getElementById("showAddToDoInput");
+
+    this.addShowAddToDoHandler();
+
+    // body 영역을 클릭하면 inputToDo 요소가 사라지고 btnShowAddToDo가 다시 나타남
+    this.body = document.body;
+    this.body.addEventListener("click", (event) => {
+      event.preventDefault;
+      const target = event.target;
+      if (target === this.btnShowAddToDo) return;
+      if (target === this.inputAddTodo) {
+        return;
+      }
+
+      this.inputToDo.classList.add("hide");
+      this.showAddToDoInput.classList.remove("hide");
+    });
   }
 
   /*
@@ -20,6 +41,19 @@ export class ToDoView {
     this.inputAddTodo.value = "";
   }
 
+  renderModal() {
+    this.body.innerHTML = `
+      <div id="modalOverlay">
+        <div id="modal">
+          <p>할 일</p>
+          <p>상세내용</p>
+          <p>마감일</p>
+          <button>수정</button>
+        </div>
+      </div>
+    `;
+  }
+
   // 새롭게 추가되는 투두만 목록의 마지막에 출력한다.
   renderAddedTodo(todo) {
     this.todoList.innerHTML += this.getTodoTemplate(todo);
@@ -30,11 +64,15 @@ export class ToDoView {
     this.listDiv = document.getElementById("list");
     this.listDiv.innerHTML = `
     <div id="toDoContainer">
+      <p>할 일</p>
+      <ul id="todoList"></ul>
       <div id="inputTodo">
-        <input id="inputAddTodo" type="text" />
+        <input id="inputAddTodo" type="text"/>
         <button id="btnAddTodo">추가</button>
       </div>
-      <ul id="todoList"></ul>
+      <div id="showAddToDoInput">
+        <button id="btnShowAddToDo">+ 할 일 추가</button>
+      </div>
     </div>`;
   }
 
@@ -83,6 +121,14 @@ export class ToDoView {
         handler(target.parentNode.id);
         this.todoList.removeChild(target.parentNode);
       }
+    });
+  }
+
+  addShowAddToDoHandler() {
+    this.btnShowAddToDo.addEventListener("click", (event) => {
+      event.preventDefault;
+      this.inputToDo.classList.remove("hide");
+      this.showAddToDoInput.classList.add("hide");
     });
   }
 }
