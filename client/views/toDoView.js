@@ -79,7 +79,13 @@ export class ToDoView {
   getTodoTemplate(item) {
     return `
         <li id=${item._id}>
-            <span class="todoText">${item.todo}</span>
+          <div id="todoContainer">
+            <div id="todoInfoContainer">
+              <span class="todoText">${item.todo}</span>
+              <span class="expText">+${item.exp} exp</span>
+            </div>
+            <span class="deadlineText">오늘</span>
+          </div>
             <button class="btnCompleteTodo">완료</button>
             <button class="btnDeleteTodo">포기</button>
         </li>
