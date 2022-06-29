@@ -53,25 +53,40 @@ const completeTodo = async (req, res) => {
   }
 
   const { experience, requiredExperience, level } = user;
-  console.log(experience, requiredExperience, todo.exp);
+  let account;
   if (experience + todo.exp >= requiredExperience) {
-    await Account.findOneAndUpdate(
+    account = await Account.findOneAndUpdate(
       { name },
       {
         level: level + 1,
         experience: experience + todo.exp - requiredExperience,
         requiredExperience: requiredExperience + 50,
+      },
+      {
+        returnDocument: "after",
       }
     );
   } else {
-    await Account.findOneAndUpdate(
+    account = await Account.findOneAndUpdate(
       { name },
       {
         experience: experience + todo.exp,
+      },
+      {
+        returnDocument: "after",
       }
     );
   }
-  res.status(StatusCodes.OK).json({ msg: "success" });
+
+  // 투두를 완료하면 새롭게 업데이트된 유저의 정보를 응답으로 보내준다.
+  res.status(StatusCodes.OK).json({
+    msg: "success",
+    user: {
+      level: account.level,
+      exp: account.experience,
+      requiredExp: account.requiredExperience,
+    },
+  });
 };
 
 const updateTodo = async (req, res) => {

@@ -69,7 +69,7 @@ export class ToDoModel {
   }
 
   // 투두를 완료한다.
-  completeItem(id) {
+  completeItem(id, callback) {
     const token = JSON.parse(localStorage.getItem("token"));
     fetch(`http://127.0.0.1:4000/api/v1/todo/${id}`, {
       method: "POST",
@@ -84,7 +84,12 @@ export class ToDoModel {
         }
       })
       .then((data) => {
-        console.log(data);
+        // 응답을 정상적으로 받았을 때
+        // 유저의 정보를 콜백 함수에 인자값을 전달해주고 호출한다.
+        // 콜백함수는 player의 정보를 렌더링하는 함수이다.
+        if (callback) {
+          callback(data.user);
+        }
       });
   }
 }

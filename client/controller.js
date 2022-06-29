@@ -54,6 +54,8 @@ export class Controller {
     id mongoDB Object ID
   */
   completeTodo(id) {
-    this.todoModel.completeItem(id);
+    this.todoModel.completeItem(id, (user) => {
+      this.view.renderPlayer(user);
+    });
   }
 }
