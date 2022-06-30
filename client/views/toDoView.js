@@ -41,19 +41,6 @@ export class ToDoView {
     this.inputAddTodo.value = "";
   }
 
-  renderModal() {
-    this.body.innerHTML = `
-      <div id="modalOverlay">
-        <div id="modal">
-          <p>할 일</p>
-          <p>상세내용</p>
-          <p>마감일</p>
-          <button>수정</button>
-        </div>
-      </div>
-    `;
-  }
-
   // 새롭게 추가되는 투두만 목록의 마지막에 출력한다.
   renderAddedTodo(todo) {
     this.todoList.innerHTML += this.getTodoTemplate(todo);
@@ -133,8 +120,26 @@ export class ToDoView {
   addShowAddToDoHandler() {
     this.btnShowAddToDo.addEventListener("click", (event) => {
       event.preventDefault;
+      console.log("here");
       this.inputToDo.classList.remove("hide");
       this.showAddToDoInput.classList.add("hide");
+    });
+  }
+
+  editToDoHanlder(handler) {
+    this.todoList.addEventListener("click", (event) => {
+      let target = event.target;
+      if (
+        target.tagName === "SPAN" ||
+        target.tagName === "LI" ||
+        target.tagName === "DIV"
+      ) {
+        console.log(target.tagName);
+        // LI 태그의 ID가 Object ID 이기 때문에 LI 태그를 찾을 때까지 parentNode를 확인한다.
+        // 그리고 클릭되는 요소들의 depth가 다 달라서 while 문을 사용했다.
+        while (target.tagName !== "LI") target = target.parentNode;
+        handler(target.id);
+      }
     });
   }
 }

@@ -114,7 +114,14 @@ const getTodos = async (req, res) => {
   //const filter = req.body.filter;
   const filter = { isComplete: false };
   const todos = await Todo.find({ name, ...filter });
-  res.status(200).json({ data: todos });
+  res.status(StatusCodes.OK).json({ data: todos });
+};
+
+const getTodo = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const todo = await Todo.findById({ _id: id });
+  res.status(StatusCodes.OK).json({ data: todo });
 };
 
 module.exports = {
@@ -123,4 +130,5 @@ module.exports = {
   completeTodo,
   updateTodo,
   getTodos,
+  getTodo,
 };

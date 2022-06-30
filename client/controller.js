@@ -5,6 +5,8 @@ import { Model } from "./model.js";
 import { View } from "./view.js";
 import { ToDoView } from "./views/toDoView.js";
 import { ToDoModel } from "./models/toDoModel.js";
+import { ToDoEditView } from "./views/toDoEditView.js";
+import { ToDoEditModel } from "./models/toDoEditModel.js";
 
 export class Controller {
   constructor() {
@@ -24,11 +26,15 @@ export class Controller {
 
       this.todoView = new ToDoView();
       this.todoModel = new ToDoModel();
+      this.todoEditView = new ToDoEditView();
+      this.todoEditModel = new ToDoEditModel();
 
       this.todoModel.getItem((todos) => this.todoView.render(todos));
       this.todoView.addTodoHandler(this.addTodo.bind(this));
       this.todoView.deleteTodoHandler(this.deleteTodo.bind(this));
       this.todoView.completeTodoHandler(this.completeTodo.bind(this));
+      this.todoView.editToDoHanlder(this.openToDoEditModal.bind(this));
+      this.todoEditView.setCloseModalEventHandler();
     });
   }
 
@@ -56,6 +62,12 @@ export class Controller {
   completeTodo(id) {
     this.todoModel.completeItem(id, (user) => {
       this.view.renderPlayer(user);
+    });
+  }
+
+  openToDoEditModal(id) {
+    this.todoEditModel.getTodo(id, (todo) => {
+      this.todoEditView.openModal(todo);
     });
   }
 }

@@ -17,6 +17,8 @@
 
 body {
   display: flex;
+  width: 100vw;
+  height: 100vh;
 }
 
 #playerCanvas {
@@ -152,6 +154,22 @@ body {
   background: #c6cdd5;
 }
 
+#modal_overlay {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: #0d1117b3;
+}
+
+#modal_container {
+  width: 400px;
+  height: 500px;
+  background: #c6cdd5;
+  border-radius: 15px;
+}
+
 .btnCompleteTodo,
 .btnDeleteTodo {
   width: 50px;
@@ -179,6 +197,10 @@ body {
 
 .hide {
   display: none;
+}
+
+.flex {
+  display: flex;
 }
 
 @media (prefers-color-scheme: dark) {
