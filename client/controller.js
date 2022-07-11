@@ -68,6 +68,14 @@ export class Controller {
   openToDoEditModal(id) {
     this.todoEditModel.getTodo(id, (todo) => {
       this.todoEditView.openModal(todo);
+      this.todoEditView.setUpdateButtonHandler(this.updateTodo.bind(this));
+    });
+  }
+
+  updateTodo(id, body) {
+    this.todoEditModel.updateTodo(id, body, () => {
+      this.todoEditView.closeModal();
+      this.todoModel.getItem((todos) => this.todoView.render(todos));
     });
   }
 }

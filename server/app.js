@@ -8,8 +8,15 @@ const authRouter = require("./routes/auth");
 const todoRouter = require("./routes/todo");
 const authenticateUser = require("./middlewares/authentication");
 
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.json());
-app.use(cors());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/todo", authenticateUser, todoRouter);

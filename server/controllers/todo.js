@@ -106,6 +106,7 @@ const updateTodo = async (req, res) => {
       .status(StatusCodes.NOT_FOUND)
       .json({ msg: `No todo with id ${todoId}` });
   }
+  res.header("Access-Control-Allow-Origin", "*");
   res.status(StatusCodes.OK).json({ msg: "success" });
 };
 
